@@ -7,7 +7,8 @@
   "author": "github.com/cadesalaberry",
   "capabilities": [
     "card-detail-badges",
-    "card-badges"
+    "card-badges",
+    "callback"
   ],
   "connectors": {
     "iframe": {
