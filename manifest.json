@@ -1,0 +1,15 @@
+{
+  "name": "Time Tracker",
+  "details": "A simple time tracker Power-Up hosted on GitHub pages.",
+  "icon": {
+    "url": "./images/logo.png"
+  },
+  "author": "github.com/cadesalaberry",
+  "capabilities": [
+  ],
+  "connectors": {
+    "iframe": {
+      "url": "./index.html"
+    }
+  }
+}
