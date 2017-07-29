@@ -21,7 +21,7 @@ function card_badges(t, options) {
 
       var longest = consumed.length;
 
-      if (consumed.length > total.length)
+      if (consumed.length < total.length)
         longest = total.length;
 
 
