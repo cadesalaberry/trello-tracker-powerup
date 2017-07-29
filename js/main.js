@@ -61,12 +61,11 @@ function card_badges(t, options) {
       }
 
       function getColor(a, b) {
-        var color = 'none';
         if (a <= b)
-          color = 'green';
+          return 'green';
 
         if (b < a)
-          color = 'red';
+          return 'red';
       }
     });
 }
