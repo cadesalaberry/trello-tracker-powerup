@@ -44,7 +44,7 @@ function card_badges(t, options) {
       function getConsumedTimeBadge(time){
         return {
           text: time,
-          // icon: './images/icon.svg',
+          icon: './images/icon.svg',
           color: 'green', // Valid values: 'green', 'yellow', 'red', 'none'
           refresh: 1 // in seconds
         };
