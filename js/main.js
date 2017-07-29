@@ -24,10 +24,9 @@ function card_badges(t, options) {
       if (consumed.length > total.length)
         longest = total.length;
 
-      console.log('[time-tracker]', consumed, '/', total);
 
 
-      for (var i = consumed.length - 1; i >= 1; i--) {
+      for (var i = longest - 1; i >= 1; i--) {
         var consumedTime = consumed[i];
         var totalTime = total[i];
         var color = getColor(consumedTime, totalTime);
@@ -41,6 +40,8 @@ function card_badges(t, options) {
 
         if (totalTime)
           text += totalTime;
+
+        console.log('[time-tracker]', color, 'badge:', text);
 
         badges.push({
           dynamic: getTimeTrackingBadge.bind(null, text, color),
