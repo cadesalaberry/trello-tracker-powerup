@@ -24,7 +24,13 @@ function card_badges(t, options) {
       if (consumed.length < total.length)
         longest = total.length;
 
+      for (var j = consumed.length - 1; j >= 0; j--) {
+        console.log('[time-tracker]', 'consumed', consumed[j]);
+      }
 
+      for (var k = total.length - 1; k >= 0; k--) {
+        console.log('[time-tracker]', 'total', total[k]);
+      }
 
       for (var i = longest - 1; i >= 1; i--) {
         var consumedTime = consumed[i];
