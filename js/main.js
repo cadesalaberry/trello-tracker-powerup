@@ -2,6 +2,7 @@ console.log('Banana');
 
 TrelloPowerUp.initialize({
   'card-badges': card_badges,
+  'card-detail-badges': card_badges,
 });
 
 function card_badges(t, options) {
@@ -35,6 +36,8 @@ function card_badges(t, options) {
           dynamic: getTotalTimeBadge.bind(null, totalTime),
         });
       }
+
+      console.log('[time-tracker]', 'will return badges', badges);
 
       return badges;
 
