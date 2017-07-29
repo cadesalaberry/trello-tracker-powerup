@@ -11,7 +11,7 @@ function card_badges(t, options) {
     .then(function extract(cardName){
       console.log('We just loaded the card name for fun: ' + cardName);
       var badges = [];
-      cardName = 'A test card [3] [33] (44) (4)';
+      // cardName = 'A test card [3] [33] (44) (4)';
 
       var parenthesis = new RegExp(/.*\((\d+)\).*/);
       var brackets = new RegExp(/.*\[(\d+)\].*/);
@@ -19,21 +19,31 @@ function card_badges(t, options) {
       var consumed = brackets.exec(cardName);
       var total = parenthesis.exec(cardName);
 
+      var longest = consumed.length;
+
+      if (consumed.length > total.length)
+        longest = total.length;
+
       console.log('[time-tracker]', consumed, '/', total);
+
 
       for (var i = consumed.length - 1; i >= 1; i--) {
         var consumedTime = consumed[i];
+        var totalTime = total[i];
+        var color = getColor(consumedTime, totalTime);
+        var text = '';
+
+        if (consumedTime)
+          text += consumedTime;
+
+        if (consumedTime && totalTime)
+          text += '/';
+
+        if (totalTime)
+          text += totalTime;
 
         badges.push({
-          dynamic: getConsumedTimeBadge.bind(null, consumedTime),
-        });
-      }
-
-      for (var j = consumed.length - 1; j >= 1; j--) {
-        var totalTime = consumed[j];
-
-        badges.push({
-          dynamic: getTotalTimeBadge.bind(null, totalTime),
+          dynamic: getTimeTrackingBadge.bind(null, text, color),
         });
       }
 
@@ -41,22 +51,22 @@ function card_badges(t, options) {
 
       return badges;
 
-      function getConsumedTimeBadge(time){
+      function getTimeTrackingBadge(text, color){
         return {
-          text: time,
+          text: text,
           icon: './images/icon.svg',
-          color: 'green', // Valid values: 'green', 'yellow', 'red', 'none'
-          refresh: 1 // in seconds
+          color: color,
+          refresh: 4 // in seconds
         };
       }
 
-      function getTotalTimeBadge(time){
-        return {
-          text: time,
-          // icon: './images/icon.svg',
-          color: 'red', // Valid values: 'green', 'yellow', 'red', 'none'
-          refresh: 1 // in seconds
-        };
+      function getColor(a, b) {
+        var color = 'none';
+        if (a <= b)
+          color = 'green';
+
+        if (b < a)
+          color = 'red';
       }
     });
 }
