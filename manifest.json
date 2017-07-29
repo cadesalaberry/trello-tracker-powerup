@@ -6,6 +6,7 @@
   },
   "author": "github.com/cadesalaberry",
   "capabilities": [
+    "card-badges"
   ],
   "connectors": {
     "iframe": {
