@@ -9,8 +9,8 @@ function card_badges(t, options) {
   return t.card('name')
     .get('name')
     .then(function extract(cardName){
-      console.log('We just loaded the card name for fun: ' + cardName);
       var badges = [];
+
       // cardName = 'A test card [3] [33] (44) (4)';
 
       var parenthesis = new RegExp(/.*\((\d+)\).*/);
@@ -41,7 +41,7 @@ function card_badges(t, options) {
         if (totalTime)
           text += totalTime;
 
-        console.log('[time-tracker]', color, 'badge:', text);
+        console.log('[time-tracker]', i, color, 'badge:', text);
 
         badges.push({
           dynamic: getTimeTrackingBadge.bind(null, text, color),
