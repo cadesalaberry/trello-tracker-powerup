@@ -55,7 +55,7 @@ function card_badges(t, options) {
       function getTimeTrackingBadge(text, color){
         return {
           text: text,
-          icon: './images/icon.png',
+          icon: './images/logo.png',
           color: color,
           refresh: 4 // in seconds
         };
