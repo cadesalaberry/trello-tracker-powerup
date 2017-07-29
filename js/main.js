@@ -9,16 +9,16 @@ function card_badges(t, options) {
     .get('name')
     .then(function extract(cardName){
       console.log('We just loaded the card name for fun: ' + cardName);
-      var newName = '';
+      var badges = [];
 
       var parenthesis = new RegExp(/.*\((\d*)\).*/);
       var brackets = new RegExp(/.*\[(\d*)\].*/);
 
-      var consumed = parenthesis.match(name);
-      var total = brackets.match(name);
+      var consumed = parenthesis.exec(name)[0];
+      var total = brackets.exec(name)[1];
 
-      return [
-        {
+      if (consumed) {
+        badges.push({
           dynamic: function getConsumedTime(){
             return {
               text: consumed,
@@ -27,9 +27,12 @@ function card_badges(t, options) {
               refresh: 1 // in seconds
             };
           },
-        },
-        {
-          dynamic: function getTotalTime(){
+        });
+      }
+
+      if (total) {
+        badges.push({
+          dynamic: function getConsumedTime(){
             return {
               text: total,
               // icon: './images/icon.svg',
@@ -37,16 +40,9 @@ function card_badges(t, options) {
               refresh: 1 // in seconds
             };
           },
-        },
-        // {
-          // its best to use static badges unless you need your
-          // badges to refresh you can mix and match between
-          // static and dynamic
-          // title: 'Detail Badge', // for detail badges only
-          // text: 'Static',
-          // icon: HYPERDEV_ICON, // for card front badges only
-          // color: null
-        // },
-      ];
+        });
+      }
+
+      return badges;
     });
 }
