@@ -11,13 +11,13 @@ function card_badges(t, options) {
     .then(function extract(cardName){
       console.log('We just loaded the card name for fun: ' + cardName);
       var badges = [];
-      // cardName = 'A test card [3] [33] (44) (4)';
+      cardName = 'A test card [3] [33] (44) (4)';
 
       var parenthesis = new RegExp(/.*\((\d+)\).*/);
       var brackets = new RegExp(/.*\[(\d+)\].*/);
 
-      var consumed = brackets.exec(cardName)[1];
-      var total = parenthesis.exec(cardName)[1];
+      var consumed = brackets.exec(cardName);
+      var total = parenthesis.exec(cardName);
 
       console.log('[time-tracker]', consumed, '/', total);
 
