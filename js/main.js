@@ -14,8 +14,10 @@ function card_badges(t, options) {
       var parenthesis = new RegExp(/.*\((\d*)\).*/);
       var brackets = new RegExp(/.*\[(\d*)\].*/);
 
-      var consumed = parenthesis.exec(name)[0];
-      var total = brackets.exec(name)[1];
+      var consumed = parenthesis.exec(name);
+      var total = brackets.exec(name);
+
+      console.log('[time-tracker]', consumed, '/', total);
 
       if (consumed) {
         badges.push({
