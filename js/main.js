@@ -72,7 +72,7 @@ function extractTimes(cardName){
   function getTimeTrackingBadge(text, color){
     return {
       text: text,
-      icon: './images/logo.png',
+      // icon: './images/logo.png',
       color: color,
       refresh: 4 // in seconds
     };
