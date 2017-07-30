@@ -8,71 +8,97 @@ TrelloPowerUp.initialize({
 function card_badges(t, options) {
   return t.card('name')
     .get('name')
-    .then(function extract(cardName){
-      var badges = [];
+    .then(extractTimes);
+}
 
-      // cardName = 'A test card [3] [33] (44) (4)';
+var name = 'A test card [3] [33] (44) (4)';
 
-      var parenthesis = new RegExp(/.*\((\d+)\).*/);
-      var brackets = new RegExp(/.*\[(\d+)\].*/);
+extractTimes(name);
 
-      var consumed = brackets.exec(cardName);
-      var total = parenthesis.exec(cardName);
+function extractTimes(cardName){
+  var badges = [];
+  var match;
 
-      var longest = consumed.length;
 
-      if (consumed.length < total.length)
-        longest = total.length;
+  var total = cardName
+    .split(/[\(\)]/)
+    .map(parseFloatSafe)
+    .filter((o) => o);
 
-      for (var j = consumed.length - 1; j >= 0; j--) {
-        console.log('[time-tracker]', 'consumed', consumed[j]);
-      }
+  var consumed = cardName
+    .split(/[\[\]]/)
+    .map(parseFloatSafe)
+    .filter((o) => o);
 
-      for (var k = total.length - 1; k >= 0; k--) {
-        console.log('[time-tracker]', 'total', total[k]);
-      }
+  var longest = consumed.length;
 
-      for (var i = longest - 1; i >= 1; i--) {
-        var consumedTime = consumed[i];
-        var totalTime = total[i];
-        var color = getColor(consumedTime, totalTime);
-        var text = '';
+  if (consumed.length < total.length)
+    longest = total.length;
 
-        if (consumedTime)
-          text += consumedTime;
+  for (var j = consumed.length - 1; j >= 0; j--) {
+    console.log('[time-tracker]', 'consumed', consumed[j]);
+  }
 
-        if (consumedTime && totalTime)
-          text += '/';
+  for (var k = total.length - 1; k >= 0; k--) {
+    console.log('[time-tracker]', 'total', total[k]);
+  }
 
-        if (totalTime)
-          text += totalTime;
+  for (var i = longest - 1; i >= 0; i--) {
+    var consumedTime = consumed[i];
+    var totalTime = total[i];
+    var color = getColor(consumedTime, totalTime);
+    var text = '';
 
-        console.log('[time-tracker]', i, '/', longest, color, 'badge:', text);
+    if (consumedTime)
+      text += consumedTime;
 
-        badges.push({
-          dynamic: getTimeTrackingBadge.bind(null, text, color),
-        });
-      }
+    if (consumedTime && totalTime)
+      text += '/';
 
-      console.log('[time-tracker]', 'will return badges', badges);
+    if (totalTime)
+      text += totalTime;
 
-      return badges;
+    console.log('[time-tracker]', i, '/', longest, color, 'badge:', text);
 
-      function getTimeTrackingBadge(text, color){
-        return {
-          text: text,
-          icon: './images/logo.png',
-          color: color,
-          refresh: 4 // in seconds
-        };
-      }
-
-      function getColor(a, b) {
-        if (a <= b)
-          return 'green';
-
-        if (b < a)
-          return 'red';
-      }
+    badges.push({
+      dynamic: getTimeTrackingBadge.bind(null, text, color),
     });
+  }
+
+  console.log('[time-tracker]', 'will return badges', badges);
+
+  return badges;
+
+  function getTimeTrackingBadge(text, color){
+    return {
+      text: text,
+      icon: './images/logo.png',
+      color: color,
+      refresh: 4 // in seconds
+    };
+  }
+
+  function getColor(a, b) {
+    if (a <= b)
+      return 'green';
+
+    if (b < a)
+      return 'red';
+  }
+
+  function parseFloatSafe(str) {
+    var float;
+
+    try {
+      float = parseFloat(str);
+    } catch (e) {
+      float = null;
+    }
+
+    return float;
+  }
+
+  function identity(o) {
+    return o;
+  }
 }
