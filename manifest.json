@@ -7,6 +7,7 @@
   "author": "github.com/cadesalaberry",
   "capabilities": [
     "card-detail-badges",
+    "show-settings",
     "card-badges",
     "callback"
   ],
