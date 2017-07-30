@@ -2,6 +2,7 @@ console.log('Banana');
 
 TrelloPowerUp.initialize({
   'card-detail-badges': card_badges,
+  'board-buttons'     : board_buttons,
   'show-settings'     : show_settings,
   'card-badges'       : card_badges,
 });
@@ -22,6 +23,19 @@ function show_settings(t, opts) {
     },
     height: 200 // initial height in pixels, can be changed later
   });
+}
+
+function board_buttons(t, options){
+  return [{
+    icon    : './images/logo.png',
+    callback: open_board_bar,
+  }];
+}
+
+function open_board_bar(t, options){
+  console.log('[time-tracker]', 'Opening board bar.');
+
+  return show_settings(t, options);
 }
 
 var name = 'A test card [3] [33] (44) (4)';
