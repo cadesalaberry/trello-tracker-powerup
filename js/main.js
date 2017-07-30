@@ -1,4 +1,4 @@
-console.log('Banana');
+'use strict';
 
 TrelloPowerUp.initialize({
   'card-detail-badges': card_badges,
