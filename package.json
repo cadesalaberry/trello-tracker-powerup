@@ -3,6 +3,9 @@
   "details": "A simple tracker Power-Up.",
   "icon": "./src/images/logo.png",
   "author": "github.com/cadesalaberry",
+  "scripts": {
+    "build": "parcel build src/html/*.html"
+  },
   "capabilities": [
     "card-detail-badges",
     "board-buttons",
@@ -14,5 +17,8 @@
     "iframe": {
       "url": "./index.html"
     }
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
   }
 }
