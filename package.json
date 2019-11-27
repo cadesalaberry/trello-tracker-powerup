@@ -1,9 +1,7 @@
 {
-  "name": "Time Tracker",
-  "details": "A simple time tracker Power-Up hosted on GitHub pages.",
-  "icon": {
-    "url": "./images/logo.png"
-  },
+  "name": "moulti-tracker",
+  "details": "A simple tracker Power-Up.",
+  "icon": "./src/images/logo.png",
   "author": "github.com/cadesalaberry",
   "capabilities": [
     "card-detail-badges",
