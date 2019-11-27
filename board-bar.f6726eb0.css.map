@@ -1,0 +1,1 @@
+{"version":3,"sources":["board-bar.css"],"names":[],"mappings":"AAAA,KACE,yBAA4B,CAC5B,UAAY,CACZ,YACF","file":"board-bar.f6726eb0.css","sourceRoot":"../src/html","sourcesContent":["body {\n  background: rgba(0,0,0, 0.5);\n  color: white;\n  padding: 18px;\n}\n"]}
