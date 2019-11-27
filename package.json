@@ -4,7 +4,7 @@
   "icon": "./src/images/logo.png",
   "author": "github.com/cadesalaberry",
   "scripts": {
-    "build": "parcel build src/html/*.html --public-url /"
+    "build": "parcel build src/html/*.html --public-url ."
   },
   "capabilities": [
     "card-detail-badges",
