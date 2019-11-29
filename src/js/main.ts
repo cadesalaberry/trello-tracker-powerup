@@ -1,6 +1,8 @@
 'use strict';
 
 import Parser from './parser';
+import boardBar from '../html/board-bar.html';
+import logoIcon from '../images/logo.png';
 
 TrelloPowerUp.initialize({
   'card-detail-badges': card_badges,
@@ -17,7 +19,7 @@ function card_badges(t, options) {
 
 function show_settings(t, opts) {
   return t.boardBar({
-    url: './board-bar.html',
+    url: boardBar,
     args: {
       // optional arguments to pass to the page
       // accessed on that page with t.arg('rand')
@@ -29,7 +31,7 @@ function show_settings(t, opts) {
 
 function board_buttons(t, options){
   return [{
-    icon    : './images/logo.png',
+    icon    : logoIcon,
     callback: open_board_bar,
   }];
 }
