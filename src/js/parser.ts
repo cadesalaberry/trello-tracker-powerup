@@ -1,5 +1,5 @@
 import { parseFloatSafe, getColor } from './helper';
-
+import icon from '../images/logo.png';
 
 const getBadgesFromName = (cardName) => {
   var badges = [];
@@ -55,9 +55,9 @@ const getBadgesFromName = (cardName) => {
 
   function getTimeTrackingBadge(text, color){
     return {
-      text: text,
-      // icon: './images/logo.png',
-      color: color,
+      text,
+      icon,
+      color,
       refresh: 4 // in seconds
     };
   }
